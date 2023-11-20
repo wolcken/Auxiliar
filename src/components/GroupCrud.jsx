@@ -3,6 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Create from '../containers/Create';
 import Edit from '../containers/Edit';
 import Delete from '../containers/Delete';
+import agregar from '../assets/icons/agregar-documento.svg';
+import editar from '../assets/icons/archivo-de-edicion.svg';
+import eliminar from '../assets/icons/eliminar-documento.svg';
 
 const GroupCrud = ({ categoria }) => {
 
@@ -23,15 +26,27 @@ const GroupCrud = ({ categoria }) => {
             <Button
                 variant="success"
                 onClick={handleShowC}
-            >New</Button>{' '}
+                className='btn-btn'
+            >
+                <img src={agregar} alt="agregar" className='img-menu' />
+                <h5 className='text-btn'>New</h5>
+            </Button>{' '}
             <Button
                 variant="primary"
                 onClick={handleShowU}
-            >Edit</Button>{' '}
+                className='btn-btn'
+            >
+                <img src={editar} alt="editar" className='img-menu' />
+                <h5 className='text-btn'>Edit</h5>
+            </Button>{' '}
             <Button
                 variant="danger"
                 onClick={handleShowD}
-            >Delete</Button>
+                className='btn-btn'
+            >
+                <img src={eliminar} alt="eliminar" className='img-menu' />
+                <h5 className='text-btn'>Delete</h5>
+            </Button>
 
             <Create show={showC} handleClose={handleCloseC} categoria={categoria} />
             <Edit show={showU} handleClose={handleCloseU} categoria={categoria} />

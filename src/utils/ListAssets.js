@@ -9,7 +9,10 @@ function ListAssets(categoria) {
             label: asset.Details
         })
     ));
-    return listAsset
+    return {
+        listAsset,
+        assets
+    }
 }
 
 export default ListAssets;

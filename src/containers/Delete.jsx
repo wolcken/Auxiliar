@@ -7,7 +7,7 @@ import apiObject from '../api/DBfirestore';
 
 const Delete = ({ show, handleClose, categoria }) => {
 
-    const options = ListAssets(categoria);
+    const options = ListAssets(categoria).listAsset;
 
     const [id, setId] = useState('');
 

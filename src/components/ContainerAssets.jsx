@@ -1,13 +1,17 @@
-import React from 'react'
-import apiObject from '../api/DBfirestore'
+import React from 'react';
+import CardAsset from './CardAsset';
+import { Container, Row } from 'react-bootstrap';
 
-const ContainerAssets = ({ categoria }) => {
-
-    const aux = apiObject.useAssets(categoria);
-    console.log(aux);
+const ContainerAssets = ({ assets }) => {
 
     return (
-        <div>{categoria}</div>
+        <Container fluid>
+            <Row>
+                {assets?.map((asset) => (
+                    <CardAsset key={asset.id} asset={asset} />
+                ))}
+            </Row>
+        </Container>
     )
 }
 

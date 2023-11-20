@@ -93,28 +93,27 @@ const deleteAsset = async (categoria, id) => {
 }
 
 // Read Assets
-const useAux = (categoria) => {
-    const [asset, setAsset] = useState([]);
-    const getAsset = async () => {
-        try {
-            const q = collection(db, `Activos/Externo/Monitores`)
-            onSnapshot(q, (querySnapshot) => {
-                const docs = [];
-                querySnapshot.forEach((doc) => {
-                    docs.push({ ...doc.data(), id: doc.id })
-                })
-                setAsset(docs)
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    useEffect(() => {
-        getAsset();
-        // eslint-disable-next-line
-    }, []);
-    return asset
-}
+// const useAux = async (categoria) => {
+//     const querySnapshot = await getDocs(collection(db, `Activos/Externo/${categoria}`));
+//     querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshots
+//         console.log(doc.id, " => ", doc.data());
+//     });
+// }
+// Read Assets
+// const useAux = (categoria) => {
+//     const [asset, setAsset] = useState([]);
+//     const docs = [];
+//     const getAsset = async () => {
+//         const querySnapshot = await getDocs(collection(db, `Activos/Externo/${categoria}`));
+//         querySnapshot.forEach((doc) => {
+//             docs.push({ ...doc.data(), id: doc.id })
+//         });
+//         setAsset(docs)
+//     }
+//     getAsset();
+//     return asset
+// }
 
 const apiObject = {
     useCategories,
@@ -122,7 +121,6 @@ const apiObject = {
     useAssets,
     updateAsset,
     deleteAsset,
-    useAux
 }
 
 export default apiObject;
