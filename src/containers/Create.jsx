@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import apiObject from '../api/DBfirestore';
+import SelectSub from '../components/SelectSub';
 
 const Create = ({ show, handleClose, categoria }) => {
 
@@ -30,7 +31,7 @@ const Create = ({ show, handleClose, categoria }) => {
             && asset.Valor_Depreciado !== ''
             && asset.Estado !== ''
             && asset.Activo !== '') {
-            apiObject.createAssets(asset, categoria);
+            apiObject.createAssets(asset, categoria.value);
             handleExit();
         }
     };
@@ -59,10 +60,11 @@ const Create = ({ show, handleClose, categoria }) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Create {categoria}</Modal.Title>
+                    <Modal.Title>{categoria.label}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form noValidate validated={validated}>
+                        <SelectSub />
                         <Form.Group controlId="validationCustom01" className='mb-3'>
                             <Form.Label>Details</Form.Label>
                             <Form.Control

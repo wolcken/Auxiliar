@@ -8,13 +8,13 @@ const db = getFirestore(appFirebase);
 
 const Search = () => {
 
-  const [select, setSelect] = useState('');
+  const [select, setSelect] = useState(null);
 
   const [asset, setAsset] = useState([]);
 
-  const handleChange = (value) => {
-    setSelect(value);
-    getAssets(value);
+  const handleChange = (e) => {
+    setSelect(e);
+    getAssets(e.value);
   }
 
   const getAssets = async (categoria) => {
@@ -38,10 +38,10 @@ const Search = () => {
         marginLeft: '5%',
         marginRight: '5%'
       }}>
-        <SelectCategoria setSelect={setSelect} handleChange={handleChange} />
+        <SelectCategoria handleChange={handleChange} />
       </div>
 
-      {select !== '' ? <ContainerAssets assets={asset} /> : null}
+      {select !== null ? <ContainerAssets assets={asset} /> : null}
     </>
   )
 }

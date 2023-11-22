@@ -7,8 +7,9 @@ const Registers = () => {
 
   const [select, setSelect] = useState(null);
 
-  const handleChange = (value) => {
-    setSelect(value);
+  const handleChange = (e) => {
+    setSelect(e);
+    // console.log(e)
   }
 
   return (
@@ -19,12 +20,12 @@ const Registers = () => {
         marginLeft: '5%',
         marginRight: '5%'
       }}>
-        <SelectCategoria setSelect={setSelect} handleChange={handleChange} />
+        <SelectCategoria handleChange={handleChange} />
       </div>
       {select !== null
         ?
         <div key={uuidv4()} style={{ marginTop: 10 }}>
-          <h2>{select}</h2>
+          <h2>{select.label}</h2>
           <GroupCrud categoria={select} />
         </div>
         :

@@ -9,14 +9,16 @@ import Row from 'react-bootstrap/Row';
 import apiObject from '../api/DBfirestore';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import appFirebase from '../Credenciales';
+import SubCategory from '../utils/SubCategories';
 
 const db = getFirestore(appFirebase);
 
 const Edit = ({ show, handleClose, categoria }) => {
 
-    const options = ListAssets(categoria);
+    const options = ListAssets(categoria?.value).listAsset;
+    // const options = SubCategory.Equipos;
 
-    const [id, setId] = useState('');
+    const [id, setId] = useState(null);
 
     const [validated, setValidated] = useState(false);
 
@@ -29,6 +31,7 @@ const Edit = ({ show, handleClose, categoria }) => {
     });
 
     const handleId = (value) => {
+        // console.log(value)
         setId(value);
         getAsset(value);
     }
@@ -46,7 +49,7 @@ const Edit = ({ show, handleClose, categoria }) => {
             && asset.Valor_Depreciado !== ''
             && asset.Estado !== ''
             && asset.Activo !== '') {
-            apiObject.updateAsset(id, asset, categoria);
+            apiObject.updateAsset(id, asset, categoria.value);
             handleExit();
         }
     };
@@ -70,7 +73,7 @@ const Edit = ({ show, handleClose, categoria }) => {
 
     const getAsset = async (id) => {
         try {
-            const docRef = doc(db, `Activos/Externo/${categoria}`, id);
+            const docRef = doc(db, `Activos/Externo/${categoria.value}`, id);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 setAsset({ ...docSnap.data() });
@@ -90,7 +93,7 @@ const Edit = ({ show, handleClose, categoria }) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit {categoria}</Modal.Title>
+                    <Modal.Title>Edit {categoria.label}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
