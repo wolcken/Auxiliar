@@ -1,12 +1,9 @@
 import React from 'react'
-import { Atras } from '../components/Atras'
 
 const Reports = () => {
   return (
     <>
-      <h1>Reports</h1>
-      
-      <Atras />
+      <h2>Reportes</h2>
     </>
   )
 }

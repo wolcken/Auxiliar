@@ -2,15 +2,15 @@ import React from 'react';
 import Select from 'react-select';
 import ListCategories from '../utils/ListCategories';
 
-const SelectCategoria = ({ setSelect }) => {
+const SelectCategoria = ({ handleChange }) => {
 
     const options = ListCategories();
 
     return (
         <Select
-            placeholder='Selected Asset'
+            placeholder='Selecciona una Categoria'
             options={options}
-            onChange={(e) => setSelect(e.value)}
+            onChange={(e) => handleChange(e.value)}
         />
     )
 }

@@ -1,4 +1,4 @@
-export const Categorias = [
+export const Categor = [
     'Computadoras',
     'Monitores',
     'Accesorios',

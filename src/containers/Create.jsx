@@ -139,6 +139,7 @@ const Create = ({ show, handleClose, categoria }) => {
                             </Form.Group>
                         </Row>
                     </Form>
+
                 </Modal.Body>
                 <Modal.Footer style={{ justifyContent: 'space-between' }}>
                     <Button variant="warning" onClick={handleClear}>

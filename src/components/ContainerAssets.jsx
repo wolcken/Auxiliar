@@ -6,7 +6,7 @@ const ContainerAssets = ({ assets }) => {
 
     return (
         <Container fluid>
-            <Row>
+            <Row className="justify-content-md-center">
                 {assets?.map((asset) => (
                     <CardAsset key={asset.id} asset={asset} />
                 ))}
