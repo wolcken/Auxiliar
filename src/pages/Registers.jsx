@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import GroupCrud from '../components/GroupCrud';
 import SelectCategoria from '../components/SelectCategoria';
 import { v4 as uuidv4 } from 'uuid';
+import ImageSearch from '../components/ImageSearch';
 
 const Registers = () => {
 
@@ -9,7 +10,6 @@ const Registers = () => {
 
   const handleChange = (e) => {
     setSelect(e);
-    // console.log(e)
   }
 
   return (
@@ -25,11 +25,11 @@ const Registers = () => {
       {select !== null
         ?
         <div key={uuidv4()} style={{ marginTop: 10 }}>
-          <h2>{select.label}</h2>
+          <h3>{select.label}</h3>
           <GroupCrud categoria={select} />
         </div>
         :
-        null
+        <ImageSearch />
       }
     </>
   )

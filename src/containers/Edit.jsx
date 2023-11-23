@@ -9,20 +9,19 @@ import Row from 'react-bootstrap/Row';
 import apiObject from '../api/DBfirestore';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import appFirebase from '../Credenciales';
-import SubCategory from '../utils/SubCategories';
 
 const db = getFirestore(appFirebase);
 
 const Edit = ({ show, handleClose, categoria }) => {
 
     const options = ListAssets(categoria?.value).listAsset;
-    // const options = SubCategory.Equipos;
 
     const [id, setId] = useState(null);
 
     const [validated, setValidated] = useState(false);
 
     const [asset, setAsset] = useState({
+        SubCategory: '',
         Details: '',
         Valor_Inicial: '',
         Valor_Depreciado: '',
@@ -31,7 +30,6 @@ const Edit = ({ show, handleClose, categoria }) => {
     });
 
     const handleId = (value) => {
-        // console.log(value)
         setId(value);
         getAsset(value);
     }
@@ -57,6 +55,7 @@ const Edit = ({ show, handleClose, categoria }) => {
     const handleClear = () => {
         setId('');
         setAsset({
+            SubCategory: '',
             Details: '',
             Valor_Inicial: '',
             Valor_Depreciado: '',

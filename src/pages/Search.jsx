@@ -3,6 +3,7 @@ import SelectCategoria from '../components/SelectCategoria';
 import ContainerAssets from '../components/ContainerAssets';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import appFirebase from '../Credenciales';
+import ImageSearch from '../components/ImageSearch';
 
 const db = getFirestore(appFirebase);
 
@@ -41,7 +42,7 @@ const Search = () => {
         <SelectCategoria handleChange={handleChange} />
       </div>
 
-      {select !== null ? <ContainerAssets assets={asset} /> : null}
+      {select !== null ? <ContainerAssets assets={asset} /> : <ImageSearch />}
     </>
   )
 }

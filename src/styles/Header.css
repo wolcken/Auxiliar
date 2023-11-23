@@ -16,3 +16,11 @@
     color: black;
     border-color: black;
 }
+
+.offcanvas {
+    background-color: #0d6efd;
+}
+
+.offcanvas-title {
+    color: white;
+}

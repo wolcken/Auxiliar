@@ -12,12 +12,21 @@ const Create = ({ show, handleClose, categoria }) => {
     const [validated, setValidated] = useState(false);
 
     const [asset, setAsset] = useState({
+        SubCategory: '',
+        Image: 'https://imagen',
         Details: '',
         Valor_Inicial: '',
         Valor_Depreciado: '',
         Estado: '',
-        Activo: false
+        Activo: true,
+        Asignado: ''
     });
+
+    const handleSelect = (e) => {
+        setAsset({
+            ...asset, SubCategory: e
+        })
+    }
 
     const handleChange = (name, value) => {
         setAsset({ ...asset, [name]: value })
@@ -26,11 +35,11 @@ const Create = ({ show, handleClose, categoria }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         setValidated(true);
-        if (asset.Details !== ''
+        if (asset.SubCategory !== ''
+            && asset.Image !== ''
+            && asset.Details !== ''
             && asset.Valor_Inicial !== ''
-            && asset.Valor_Depreciado !== ''
-            && asset.Estado !== ''
-            && asset.Activo !== '') {
+            && asset.Estado !== '') {
             apiObject.createAssets(asset, categoria.value);
             handleExit();
         }
@@ -38,11 +47,14 @@ const Create = ({ show, handleClose, categoria }) => {
 
     const handleClear = () => {
         setAsset({
+            SubCategory: '',
+            Image: 'https://imagen',
             Details: '',
             Valor_Inicial: '',
             Valor_Depreciado: '',
             Estado: '',
-            Activo: false
+            Activo: true,
+            Asignado: ''
         });
         setValidated(false);
     }
@@ -64,79 +76,65 @@ const Create = ({ show, handleClose, categoria }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form noValidate validated={validated}>
-                        <SelectSub />
-                        <Form.Group controlId="validationCustom01" className='mb-3'>
-                            <Form.Label>Details</Form.Label>
+
+                        <SelectSub subCategoria={categoria.value} handleChange={handleSelect} />
+
+                        <Form.Group controlId="validationDetails" className='mb-3'>
+                            <Form.Label>Detalles:</Form.Label>
                             <Form.Control
                                 required
                                 as="textarea"
                                 rows={3}
                                 type='text'
-                                placeholder='Details'
+                                placeholder='Detalles'
                                 value={asset.Details}
                                 onChange={(event) => handleChange('Details', event.target.value)}
                             />
                             <Form.Control.Feedback type="invalid">
-                                Please provide a valid Details.
+                                Porfavor introduce un Detalle valido.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group controlId="validationImage" className='mb-3'>
+                            <Form.Label>Url Imagen:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Url Imagen"
+                                required
+                                value={asset.Image}
+                                onChange={(event) => handleChange('Image', event.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Porfavor introduce una Url de Imagen.
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-                                <Form.Label>Starting Price</Form.Label>
+                            <Form.Group as={Col} md="6" controlId="validationStartingPrice">
+                                <Form.Label>Valor Inicial:</Form.Label>
                                 <Form.Control
                                     type="number"
                                     min={0}
-                                    placeholder="Starting Price"
+                                    placeholder="Valor Inicial"
                                     required
                                     value={asset.Valor_Inicial}
                                     onChange={(event) => handleChange('Valor_Inicial', event.target.value)}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Please provide a valid Price.
+                                    Porfavor introduce un Valor Inicial.
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                <Form.Label>Depreciated Price</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    min={0}
-                                    placeholder="Depreciated Price"
-                                    required
-                                    value={asset.Valor_Depreciado}
-                                    onChange={(event) => handleChange('Valor_Depreciado', event.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid Price.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                                <Form.Label>State</Form.Label>
+                            <Form.Group as={Col} md="6" controlId="validationState">
+                                <Form.Label>Estado</Form.Label>
                                 <Form.Control
                                     required
                                     type="number"
                                     min={0}
                                     max={10}
-                                    placeholder="State"
+                                    placeholder="Estado"
                                     value={asset.Estado}
                                     onChange={(event) => handleChange('Estado', event.target.value)}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Please provide a valid State.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="validationCustom04">
-                                <Form.Label>Asset</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Asset"
-                                    value={asset.Activo}
-                                    onChange={(event) => handleChange('Activo', event.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid Asset.
+                                    Porfavor introduce el Estado.
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Row>

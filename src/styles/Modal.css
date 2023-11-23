@@ -1,0 +1,28 @@
+.container-info {
+    background-color: #0d6dfd0e;
+    padding: 5px;
+}
+
+.cont-text {
+    display: flex;
+    flex-direction: row;
+}
+
+.subtitle {
+    /* color: white; */
+    margin-right: 10px;
+    /* padding: 1px 3px;
+    background-color: #0d6efd;
+    border-radius: 5px; */
+}
+
+/* .text {
+    color: #0d6efd;
+} */
+
+.line {
+    background-color: #0d6efd;
+    height: 1px;
+    width: 50%;
+    margin: 0 25% 5px;
+}

@@ -1,10 +1,11 @@
 const Muebles = [
     { value: 1, label: 'Silla' },
-    { value: 2, label: 'Estante' },
-    { value: 3, label: 'Gabetero' },
-    { value: 4, label: 'Librero' },
-    { value: 5, label: 'Mesa de Reuniones' },
-    { value: 6, label: 'Refrigerador' },
+    { value: 2, label: 'Escritorio' },
+    { value: 3, label: 'Estante' },
+    { value: 4, label: 'Gabetero' },
+    { value: 5, label: 'Librero' },
+    { value: 6, label: 'Mesa de Reuniones' },
+    { value: 7, label: 'Refrigerador' },
 ]
 
 const Equipos = [

@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Image from 'react-bootstrap/Image';
+import not_found from '../assets/images/404-not-found.gif';
 
 const NotFount = () => {
   return (
-    <div>NotFount</div>
+    <Image src={not_found} rounded />
   )
 }
 

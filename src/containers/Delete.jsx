@@ -7,13 +7,13 @@ import apiObject from '../api/DBfirestore';
 
 const Delete = ({ show, handleClose, categoria }) => {
 
-    const options = ListAssets(categoria).listAsset;
+    const options = ListAssets(categoria?.value).listAsset;
 
     const [id, setId] = useState('');
 
     const handleDelete = () => {
         if (id !== '') {
-            apiObject.deleteAsset(categoria, id);
+            apiObject.deleteAsset(categoria.value, id);
             handleExit();
         } else {
             alert('Seleccione')
@@ -34,7 +34,7 @@ const Delete = ({ show, handleClose, categoria }) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Delete {categoria}</Modal.Title>
+                    <Modal.Title>Delete {categoria.label}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Select

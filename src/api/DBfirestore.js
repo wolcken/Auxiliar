@@ -32,11 +32,14 @@ const createAssets = async (asset, categoria) => {
     const assetRef = collection(db, `Activos/Externo/${categoria}`);
     try {
         await setDoc(doc(assetRef), {
+            SubCategory: String(asset.SubCategory),
+            Image: String(asset.Image),
             Details: String(asset.Details),
             Valor_Inicial: Number(asset.Valor_Inicial),
-            Valor_Depreciado: Number(asset.Valor_Depreciado),
+            Valor_Depreciado: Number(asset.Valor_Inicial),
             Estado: Number(asset.Estado),
-            Activo: Boolean(asset.Activo)
+            Activo: Boolean(asset.Activo),
+            Asignado: String(asset.Asignado)
         });
         alert(`${categoria} creada con exito`);
     } catch (error) {
@@ -71,11 +74,14 @@ const updateAsset = async (id, asset, categoria) => {
     const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
     try {
         await updateDoc(assetRef, {
+            SubCategory: String(asset.SubCategory),
+            Image: String(asset.Image),
             Details: String(asset.Details),
             Valor_Inicial: Number(asset.Valor_Inicial),
             Valor_Depreciado: Number(asset.Valor_Depreciado),
             Estado: Number(asset.Estado),
-            Activo: Boolean(asset.Activo)
+            Activo: Boolean(asset.Activo),
+            Asignado: String(asset.Asignado)
         })
         alert('Modificado con exito')
     } catch (error) {
