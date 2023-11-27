@@ -6,6 +6,7 @@ import Delete from '../containers/Delete';
 import agregar from '../assets/icons/agregar-documento.svg';
 import editar from '../assets/icons/archivo-de-edicion.svg';
 import eliminar from '../assets/icons/eliminar-documento.svg';
+import '../styles/Registers.css';
 
 const GroupCrud = ({ categoria }) => {
 
@@ -30,7 +31,7 @@ const GroupCrud = ({ categoria }) => {
             >
                 <img src={agregar} alt="agregar" className='img-menu' />
                 <h5 className='text-btn'>New</h5>
-            </Button>{' '}
+            </Button>
             <Button
                 variant="primary"
                 onClick={handleShowU}
@@ -38,7 +39,7 @@ const GroupCrud = ({ categoria }) => {
             >
                 <img src={editar} alt="editar" className='img-menu' />
                 <h5 className='text-btn'>Edit</h5>
-            </Button>{' '}
+            </Button>
             <Button
                 variant="danger"
                 onClick={handleShowD}

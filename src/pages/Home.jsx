@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Login from '../containers/Login';
-import Menu from '../containers/Menu';
+import Inicio from '../containers/Inicio';
 
 const Home = () => {
     const [isLoggedIn,] = useState(true);
@@ -8,7 +8,7 @@ const Home = () => {
         <>
             {isLoggedIn ? (
                 <>
-                    <Menu />
+                    <Inicio />
                 </>
             ) : (
                 <Login />
