@@ -56,7 +56,7 @@ const useAssets = (categoria, label) => {
             onSnapshot(q, (querySnapshot) => {
                 const docs = [];
                 querySnapshot.forEach((doc) => {
-                    docs.push({ ...doc.data(), id: doc.id, categoria: label })
+                    docs.push({ ...doc.data(), id: doc.id, Categoria: label })
                 })
                 setAsset(docs)
             })
