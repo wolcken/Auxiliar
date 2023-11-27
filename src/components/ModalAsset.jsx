@@ -57,7 +57,7 @@ const ModalAsset = ({ show, handleClose, asset, categoria }) => {
             </Modal.Body>
             <Modal.Footer style={{ justifyContent: 'space-between' }}>
                 <Button variant="outline-warning" onClick={handleClose}>
-                    Depreciar
+                    Retirar
                 </Button>
                 <Button variant="outline-success" onClick={handleShowAsignar}>
                     Asignar

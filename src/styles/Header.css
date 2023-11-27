@@ -13,8 +13,8 @@
 }
 
 .nav_a:hover {
-    color: black;
-    border-color: black;
+    color: gray;
+    border-color: gray;
 }
 
 .offcanvas {

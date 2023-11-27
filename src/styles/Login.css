@@ -1,4 +1,12 @@
-.login {
-    display: flex;
-    justify-content: center;
+.form_login {
+    padding: 0 20%;
+}
+
+.title_login {
+    margin-bottom: 20px;
+}
+
+.logo_login {
+    width: 100%;
+    margin-bottom: 20px;
 }

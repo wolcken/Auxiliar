@@ -3,67 +3,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
-import documento from '../assets/icons/documento.svg';
-import busqueda from '../assets/icons/busqueda.svg';
-import monedas from '../assets/icons/monedas.svg';
-import votacion from '../assets/icons/votacion.svg';
-import aplicaciones from '../assets/icons/aplicaciones.svg';
+import dejar from '../assets/icons/dejar.svg';
 import '../styles/Header.css';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthProvider';
+import { ListRoutes } from '../utils/ListRoutes';
 
 function Header() {
 
-    const routes = [];
+    const { setUser, isLoggedIn, setIsLoggedIn } = useContext(AuthContext)
 
-    routes.push({
-        id: 1,
-        clasLi: 'cont_menu',
-        im: votacion,
-        alt: 'votacion',
-        clasImg: 'icon',
-        to: '/reports',
-        clasNav: 'nav_a',
-        text: 'Reportes',
-    });
-    routes.push({
-        id: 2,
-        clasLi: 'cont_menu',
-        im: aplicaciones,
-        alt: 'aplicaciones',
-        clasImg: 'icon',
-        to: '/assets',
-        clasNav: 'nav_a',
-        text: 'Activos',
-    });
-    routes.push({
-        id: 3,
-        clasLi: 'cont_menu',
-        im: monedas,
-        alt: 'monedas',
-        clasImg: 'icon',
-        to: '/inventory',
-        clasNav: 'nav_a',
-        text: 'Inventario',
-    });
-    routes.push({
-        id: 4,
-        clasLi: 'cont_menu',
-        im: documento,
-        alt: 'documento',
-        clasImg: 'icon',
-        to: '/registers',
-        clasNav: 'nav_a',
-        text: 'Registros',
-    });
-    routes.push({
-        id: 5,
-        clasLi: 'cont_menu',
-        im: busqueda,
-        alt: 'busqueda',
-        clasImg: 'icon',
-        to: '/search',
-        clasNav: 'nav_a',
-        text: 'Buscar',
-    });
+    const routes = ListRoutes;
+
+    const handleExit = () => {
+        setUser(null);
+        setIsLoggedIn(false);
+    }
 
     return (
         <Navbar bg="primary" data-bs-theme="dark" key='md' expand='md' className='mb-3'>
@@ -82,7 +37,7 @@ function Header() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                            {routes.map((route) => {
+                            {isLoggedIn && routes.map((route) => {
                                 return (
                                     <NavLink key={route.id} to={route.to} className={route.clasNav}>
                                         <img src={route.im} alt={route.alt} className={route.clasImg} />
@@ -90,6 +45,12 @@ function Header() {
                                     </NavLink>
                                 )
                             })}
+                            {isLoggedIn &&
+                                <NavLink to={'/'} className='nav_a' onClick={handleExit}>
+                                    <img src={dejar} alt='dejar' className='icon' />
+                                    Salir
+                                </NavLink>
+                            }
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>

@@ -9,22 +9,26 @@ import Layout from '../containers/Layout';
 import NotFount from '../pages/NotFount';
 import Inventory from '../pages/Inventory';
 import Assets from '../pages/Assets';
+import { AuthProvider } from '../context/AuthProvider';
+import { AuthRoute } from '../auth/Autentication';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/reports' element={<Reports />} />
-            <Route path='/assets' element={<Assets />} />
-            <Route path='/registers' element={<Registers />} />
-            <Route path='/search' element={<Search />} />
-            <Route path='/inventory' element={<Inventory />} />
-            <Route path='*' element={<NotFount />} />
-          </Routes>
-        </Layout>
+        <AuthProvider>
+          <Layout>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/reports' element={<AuthRoute><Reports /></AuthRoute>} />
+              <Route path='/assets' element={<AuthRoute><Assets /></AuthRoute>} />
+              <Route path='/registers' element={<AuthRoute><Registers /></AuthRoute>} />
+              <Route path='/search' element={<AuthRoute><Search /></AuthRoute>} />
+              <Route path='/inventory' element={<AuthRoute><Inventory /></AuthRoute>} />
+              <Route path='*' element={<NotFount />} />
+            </Routes>
+          </Layout>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

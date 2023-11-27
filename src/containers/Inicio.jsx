@@ -2,6 +2,7 @@ import React from 'react'
 import logo from '../assets/images/Cecasem30.png';
 
 const Inicio = () => {
+
   return (
     <>
         <h2>Inicio</h2>
