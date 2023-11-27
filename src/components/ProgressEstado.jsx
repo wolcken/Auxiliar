@@ -6,7 +6,7 @@ const ProgressEstado = ({ state }) => {
     const now = Number(state * 10);
 
     return (
-        <ProgressBar animated variant='primary' now={60} label={`${now}%`} />
+        <ProgressBar animated variant='primary' now={now} label={`${now}%`} />
     )
 }
 

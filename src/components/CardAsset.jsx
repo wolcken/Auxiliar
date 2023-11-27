@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import noImagen from '../assets/images/noImagen.png';
 import ModalAsset from './ModalAsset';
 
-const CardAsset = ({ asset }) => {
+const CardAsset = ({ asset, categoria }) => {
 
     const [show, setShow] = useState(false);
 
@@ -23,7 +23,7 @@ const CardAsset = ({ asset }) => {
                     {asset?.Details}
                 </Card.Text>
                 <Button size='sm' variant="outline-primary" onClick={handleShow}>Ver Detalles</Button>
-                <ModalAsset show={show} handleClose={handleClose} asset={asset} />
+                <ModalAsset show={show} handleClose={handleClose} asset={asset} categoria={categoria} />
             </Card.Body>
         </Card>
     )

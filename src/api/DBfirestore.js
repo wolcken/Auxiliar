@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import appFirestore from '../Credenciales';
-import { collection, deleteDoc, doc, getFirestore, onSnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, getFirestore, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
 const db = getFirestore(appFirestore);
 
@@ -33,8 +33,9 @@ const createAssets = async (asset, categoria) => {
     try {
         await setDoc(doc(assetRef), {
             SubCategory: String(asset.SubCategory),
-            Image: String(asset.Image),
+            Codigo: Number(asset.Codigo),
             Details: String(asset.Details),
+            Image: String(asset.Image),
             Valor_Inicial: Number(asset.Valor_Inicial),
             Valor_Depreciado: Number(asset.Valor_Inicial),
             Estado: Number(asset.Estado),
@@ -47,7 +48,7 @@ const createAssets = async (asset, categoria) => {
     }
 }
 // Read Assets
-const useAssets = (categoria) => {
+const useAssets = (categoria, label) => {
     const [asset, setAsset] = useState([]);
     const getAsset = async () => {
         try {
@@ -55,7 +56,7 @@ const useAssets = (categoria) => {
             onSnapshot(q, (querySnapshot) => {
                 const docs = [];
                 querySnapshot.forEach((doc) => {
-                    docs.push({ ...doc.data(), id: doc.id })
+                    docs.push({ ...doc.data(), id: doc.id, categoria: label })
                 })
                 setAsset(docs)
             })
@@ -75,8 +76,9 @@ const updateAsset = async (id, asset, categoria) => {
     try {
         await updateDoc(assetRef, {
             SubCategory: String(asset.SubCategory),
-            Image: String(asset.Image),
+            Codigo: Number(asset.Codigo),
             Details: String(asset.Details),
+            Image: String(asset.Image),
             Valor_Inicial: Number(asset.Valor_Inicial),
             Valor_Depreciado: Number(asset.Valor_Depreciado),
             Estado: Number(asset.Estado),
@@ -98,28 +100,38 @@ const deleteAsset = async (categoria, id) => {
     }
 }
 
-// Read Assets
-// const useAux = async (categoria) => {
-//     const querySnapshot = await getDocs(collection(db, `Activos/Externo/${categoria}`));
-//     querySnapshot.forEach((doc) => {
-//         // doc.data() is never undefined for query doc snapshots
-//         console.log(doc.id, " => ", doc.data());
-//     });
-// }
-// Read Assets
-// const useAux = (categoria) => {
-//     const [asset, setAsset] = useState([]);
-//     const docs = [];
-//     const getAsset = async () => {
-//         const querySnapshot = await getDocs(collection(db, `Activos/Externo/${categoria}`));
-//         querySnapshot.forEach((doc) => {
-//             docs.push({ ...doc.data(), id: doc.id })
-//         });
-//         setAsset(docs)
-//     }
-//     getAsset();
-//     return asset
-// }
+const useInventary = (categoria, subCategoria, categoriaLabel) => {
+    const [article, setArticle] = useState(null)
+    const getInventary = async () => {
+        const q = query(collection(db, `Activos/Externo/${categoria}`), where("SubCategory", "==", subCategoria));
+        const querySnapshot = await getDocs(q);
+        setArticle({
+            Category: categoriaLabel,
+            SubCategory: subCategoria,
+            Units: querySnapshot.docs.length
+        });
+    }
+    useEffect(() => {
+        getInventary();
+        // eslint-disable-next-line
+    }, []);
+    return article
+}
+
+//Update Asignacion
+const updateAsignacion = async (categoria, id, asignado) => {
+
+    const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
+
+    try {
+        await updateDoc(assetRef, {
+            Asignado: String(asignado)
+        })
+        alert('Asignado con exito')
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 const apiObject = {
     useCategories,
@@ -127,6 +139,8 @@ const apiObject = {
     useAssets,
     updateAsset,
     deleteAsset,
+    useInventary,
+    updateAsignacion
 }
 
 export default apiObject;

@@ -42,7 +42,7 @@ const Search = () => {
         <SelectCategoria handleChange={handleChange} />
       </div>
 
-      {select !== null ? <ContainerAssets assets={asset} /> : <ImageSearch />}
+      {select !== null ? <ContainerAssets assets={asset} categoria={select.value} /> : <ImageSearch />}
     </>
   )
 }

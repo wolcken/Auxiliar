@@ -13,8 +13,9 @@ const Create = ({ show, handleClose, categoria }) => {
 
     const [asset, setAsset] = useState({
         SubCategory: '',
-        Image: 'https://imagen',
+        Codigo: '',
         Details: '',
+        Image: 'https://imagen',
         Valor_Inicial: '',
         Valor_Depreciado: '',
         Estado: '',
@@ -36,8 +37,9 @@ const Create = ({ show, handleClose, categoria }) => {
         event.preventDefault();
         setValidated(true);
         if (asset.SubCategory !== ''
-            && asset.Image !== ''
+            && asset.Codigo !== ''
             && asset.Details !== ''
+            && asset.Image !== ''
             && asset.Valor_Inicial !== ''
             && asset.Estado !== '') {
             apiObject.createAssets(asset, categoria.value);
@@ -48,8 +50,9 @@ const Create = ({ show, handleClose, categoria }) => {
     const handleClear = () => {
         setAsset({
             SubCategory: '',
-            Image: 'https://imagen',
+            Codigo: '',
             Details: '',
+            Image: 'https://imagen',
             Valor_Inicial: '',
             Valor_Depreciado: '',
             Estado: '',
@@ -79,6 +82,20 @@ const Create = ({ show, handleClose, categoria }) => {
 
                         <SelectSub subCategoria={categoria.value} handleChange={handleSelect} />
 
+                        <Form.Group controlId="validationCodigo" className='mb-3'>
+                            <Form.Label>Codigo:</Form.Label>
+                            <Form.Control
+                                type='number'
+                                placeholder='Codigo'
+                                required
+                                min={1000}
+                                value={asset.Codigo}
+                                onChange={(event) => handleChange('Codigo', event.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Porfavor introduce un Codigo valido.
+                            </Form.Control.Feedback>
+                        </Form.Group>
                         <Form.Group controlId="validationDetails" className='mb-3'>
                             <Form.Label>Detalles:</Form.Label>
                             <Form.Control

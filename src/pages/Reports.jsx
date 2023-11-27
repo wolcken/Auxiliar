@@ -1,17 +1,27 @@
-import React from 'react'
-// import SubCategory from '../utils/SubCategories'
-// import { Categories } from '../utils/Categories'
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import ListReportInventory from '../utils/ListReportInventory';
 
 const Reports = () => {
 
-  // const options = Categories;
-  // console.log(options);
+  const reportInventory = ListReportInventory();
 
-  // console.log(SubCategory.Muebles);
+  const handleReportInventory = () => {
+    reportInventory.forEach((inventories) => {
+      inventories.forEach((inventory) => {
+        console.log(inventory);
+      })
+    })
+  }
 
   return (
     <>
-      <h2>Reportes</h2>
+      <Button variant="primary" onClick={handleReportInventory}>Inventario</Button>{' '}
+      <Button variant="secondary">Secondary</Button>{' '}
+      <Button variant="success">Success</Button>{' '}
+      <Button variant="warning">Warning</Button>{' '}
+      <Button variant="danger">Danger</Button>{' '}
+      <Button variant="info">Info</Button>
     </>
   )
 }

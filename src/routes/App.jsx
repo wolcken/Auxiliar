@@ -8,6 +8,7 @@ import Search from '../pages/Search';
 import Layout from '../containers/Layout';
 import NotFount from '../pages/NotFount';
 import Inventory from '../pages/Inventory';
+import Assets from '../pages/Assets';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/reports' element={<Reports />} />
+            <Route path='/assets' element={<Assets />} />
             <Route path='/registers' element={<Registers />} />
             <Route path='/search' element={<Search />} />
             <Route path='/inventory' element={<Inventory />} />

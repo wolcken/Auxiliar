@@ -7,6 +7,7 @@ import documento from '../assets/icons/documento.svg';
 import busqueda from '../assets/icons/busqueda.svg';
 import monedas from '../assets/icons/monedas.svg';
 import votacion from '../assets/icons/votacion.svg';
+import aplicaciones from '../assets/icons/aplicaciones.svg';
 import '../styles/Header.css';
 
 function Header() {
@@ -26,6 +27,16 @@ function Header() {
     routes.push({
         id: 2,
         clasLi: 'cont_menu',
+        im: aplicaciones,
+        alt: 'aplicaciones',
+        clasImg: 'icon',
+        to: '/assets',
+        clasNav: 'nav_a',
+        text: 'Activos',
+    });
+    routes.push({
+        id: 3,
+        clasLi: 'cont_menu',
         im: monedas,
         alt: 'monedas',
         clasImg: 'icon',
@@ -34,7 +45,7 @@ function Header() {
         text: 'Inventario',
     });
     routes.push({
-        id: 3,
+        id: 4,
         clasLi: 'cont_menu',
         im: documento,
         alt: 'documento',
@@ -44,7 +55,7 @@ function Header() {
         text: 'Registros',
     });
     routes.push({
-        id: 4,
+        id: 5,
         clasLi: 'cont_menu',
         im: busqueda,
         alt: 'busqueda',

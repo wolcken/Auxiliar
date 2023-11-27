@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Image from 'react-bootstrap/Image';
 import noImagen from '../assets/images/noImagen.png';
 import '../styles/Modal.css';
 import ProgressEstado from './ProgressEstado';
+import ModalAsignar from './ModalAsignar';
 
-const ModalAsset = ({ show, handleClose, asset }) => {
+const ModalAsset = ({ show, handleClose, asset, categoria }) => {
+
+    const [showAsignar, setShowAsignar] = useState(false);
+
+    const handleCloseAsignar = () => setShowAsignar(false);
+    const handleShowAsignar = () => setShowAsignar(true);
 
     return (
-        <Modal show={show} onHide={handleClose} centered >
+        <Modal show={show} onHide={handleClose} centered animation >
             <Modal.Header closeButton>
                 <Modal.Title>{asset?.SubCategory}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 15 }}>
-                    <Image src={(asset?.Image !== 'https://imagen') ? asset?.Image : noImagen} rounded style={{ width: '100%', height: 250 }} />
+                    <Image src={(asset?.Image !== 'https://imagen') ? asset?.Image : noImagen} rounded style={{ width: '100%', height: 300 }} />
                 </div>
-                <div className='line'></div>
+                {/* <div className='line'></div> */}
                 <div className='cont-text'>
                     <h6 className='subtitle'>Codigo:</h6>
                     <span className='text'>{asset?.Codigo || 'Sin Codigo'}</span>
@@ -53,10 +59,11 @@ const ModalAsset = ({ show, handleClose, asset }) => {
                 <Button variant="outline-warning" onClick={handleClose}>
                     Depreciar
                 </Button>
-                <Button variant="outline-success" onClick={handleClose}>
+                <Button variant="outline-success" onClick={handleShowAsignar}>
                     Asignar
                 </Button>
             </Modal.Footer>
+            <ModalAsignar show={showAsignar} handleClose={handleCloseAsignar} asset={asset} categoria={categoria} />
         </Modal>
     )
 }

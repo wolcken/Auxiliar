@@ -3,6 +3,7 @@ import GroupCrud from '../components/GroupCrud';
 import SelectCategoria from '../components/SelectCategoria';
 import { v4 as uuidv4 } from 'uuid';
 import ImageSearch from '../components/ImageSearch';
+import Loading from '../assets/images/loading-load.gif';
 
 const Registers = () => {
 
@@ -26,7 +27,10 @@ const Registers = () => {
         ?
         <div key={uuidv4()} style={{ marginTop: 10 }}>
           <h3>{select.label}</h3>
-          <GroupCrud categoria={select} />
+          <div>
+            <GroupCrud categoria={select} />
+          </div>
+          <img src={Loading} alt="loading" />
         </div>
         :
         <ImageSearch />
