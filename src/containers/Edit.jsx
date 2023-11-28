@@ -8,9 +8,9 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import apiObject from '../api/DBfirestore';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import appFirebase from '../Credenciales';
+import { app } from '../Credenciales';
 
-const db = getFirestore(appFirebase);
+const db = getFirestore(app);
 
 const Edit = ({ show, handleClose, categoria }) => {
 

@@ -1,13 +1,12 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import { NavLink } from 'react-router-dom';
-import dejar from '../assets/icons/dejar.svg';
-import '../styles/Header.css';
 import { useContext } from 'react';
+import { Nav, Navbar, Offcanvas, Container } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { ListRoutes } from '../utils/ListRoutes';
+import { signOut } from 'firebase/auth';
+import dejar from '../assets/icons/dejar.svg';
+import '../styles/Header.css';
+import { auth } from '../Credenciales';
 
 function Header() {
 
@@ -16,8 +15,10 @@ function Header() {
     const routes = ListRoutes;
 
     const handleExit = () => {
-        setUser(null);
-        setIsLoggedIn(false);
+        signOut(auth).then(() => {
+            setUser(null);
+            setIsLoggedIn(false);
+        }).catch(error => console.log(error));
     }
 
     return (

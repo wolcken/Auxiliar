@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import SelectCategoria from '../components/SelectCategoria';
 import ContainerAssets from '../components/ContainerAssets';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
-import appFirebase from '../Credenciales';
+import { app } from '../Credenciales';
 import ImageSearch from '../components/ImageSearch';
 
-const db = getFirestore(appFirebase);
+const db = getFirestore(app);
 
 const Search = () => {
 

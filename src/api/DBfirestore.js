@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import appFirestore from '../Credenciales';
-import { collection, deleteDoc, doc, getDocs, getFirestore, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { getFirestore, collection, deleteDoc, doc, getDocs, onSnapshot, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { app } from '../Credenciales';
 
-const db = getFirestore(appFirestore);
+const db = getFirestore(app);
 
 // Read Assets
 const useCategories = () => {

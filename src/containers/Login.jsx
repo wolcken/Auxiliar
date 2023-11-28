@@ -1,20 +1,26 @@
 import React, { useContext, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
+import { Button, Col, Form, Image, Row } from 'react-bootstrap';
 import logo from '../assets/images/Cecasem30.png';
-import '../styles/Login.css';
 import { AuthContext } from '../context/AuthProvider';
+import usuario from '../assets/icons/usuario.svg';
+import ojo from '../assets/icons/ojo.svg';
+import ojo_cruzado from '../assets/icons/ojo-cruzado.svg';
+import '../styles/Login.css';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Credenciales';
 
 const Login = ({ onLogIn }) => {
 
     const { setUser } = useContext(AuthContext);
 
+    const [validated, setValidated] = useState(false);
+
     const [userDates, setUserDates] = useState({
-        name: '',
+        email: '',
         password: ''
     });
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (label, value) => {
         setUserDates({
@@ -29,17 +35,21 @@ const Login = ({ onLogIn }) => {
     };
 
     const handleLogin = () => {
-        if (userDates.name !== '' && userDates.password !== '') {
-            setUser(userDates);
-            onLogIn();
-        } else {
-            alert('Inicio de sesion fallido');
+        setValidated(true);
+        if (userDates.email !== '' && userDates.password !== '') {
+            signInWithEmailAndPassword(auth, userDates.email, userDates.password)
+                .then(() => {
+                    setUser(userDates);
+                    onLogIn();
+                }).catch((error) => {
+                    alert(`Acceso Invalido: ${error}`)
+                });
         }
     };
 
     return (
         <>
-            <Form className='form_login'>
+            <Form className='form_login' noValidate validated={validated}>
 
                 <h2 className='title_login'>Iniciar Sesion</h2>
 
@@ -49,12 +59,22 @@ const Login = ({ onLogIn }) => {
                     <Form.Label column sm="2">
                         Usuario:
                     </Form.Label>
-                    <Col sm="10">
+                    <Col sm="9">
                         <Form.Control
-                            type='text'
-                            placeholder='Nombre de Usuario'
-                            onChange={(event) => handleChange('name', event.target.value)}
+                            required
+                            type='email'
+                            placeholder='Usuario'
+                            onChange={(event) => handleChange('email', event.target.value)}
                             onKeyDown={handleKeyDown}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Introduce un Correo Electronico valido.
+                        </Form.Control.Feedback>
+                    </Col>
+                    <Col sm='1' className='col_icon'>
+                        <Image
+                            src={usuario}
+                            className='icon_control'
                         />
                     </Col>
                 </Form.Group>
@@ -63,17 +83,28 @@ const Login = ({ onLogIn }) => {
                     <Form.Label column sm="2">
                         Contraseña:
                     </Form.Label>
-                    <Col sm="10">
+                    <Col sm="9">
                         <Form.Control
-                            type="password"
+                            required
+                            type={!showPassword ? 'password' : 'text'}
                             placeholder="Contraseña"
                             onChange={(event) => handleChange('password', event.target.value)}
                             onKeyDown={handleKeyDown}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Introduce una Contraseña.
+                        </Form.Control.Feedback>
+                    </Col>
+                    <Col sm='1' className='col_icon'>
+                        <Image
+                            src={!showPassword ? ojo_cruzado : ojo}
+                            onClick={() => setShowPassword(!showPassword)}
+                            className='icon_control icon_eye'
+                        />
                     </Col>
                 </Form.Group>
 
-                <Button variant="primary" onClick={handleLogin}>Iniciar Sesion</Button>
+                <Button variant="primary" onClick={handleLogin}>Iniciar</Button>
             </Form>
         </>
     )
