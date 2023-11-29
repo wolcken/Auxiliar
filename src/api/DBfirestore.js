@@ -32,6 +32,8 @@ const createAssets = async (asset, categoria) => {
     const assetRef = collection(db, `Activos/Externo/${categoria.value}`);
     try {
         await setDoc(doc(assetRef), {
+            Tipo: String(categoria.value),
+            Category: String(categoria.label),
             SubCategory: String(asset.SubCategory),
             Codigo: Number(asset.Codigo),
             Details: String(asset.Details),
@@ -139,6 +141,22 @@ const updateAsignacion = async (categoria, id, asignado) => {
     }
 }
 
+//Update Depreciation and UFV
+const updateDepreciation = async (categoria, id, fecha, ufv, valor) => {
+
+    const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
+
+    try {
+        await updateDoc(assetRef, {
+            Fecha_Final: String(fecha),
+            UFV_Final: Number(ufv),
+            Valor_Depreciado: Number(valor)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const apiObject = {
     useCategories,
     createAssets,
@@ -146,7 +164,8 @@ const apiObject = {
     updateAsset,
     deleteAsset,
     useInventary,
-    updateAsignacion
+    updateAsignacion,
+    updateDepreciation
 }
 
 export default apiObject;

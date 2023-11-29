@@ -1,20 +1,10 @@
 import React, { useContext } from 'react';
 import logo from '../assets/images/Cecasem30.png';
 import { AuthContext } from '../context/AuthProvider';
-// import ListReportInventory from '../utils/ListReportInventory';
 
 const Inicio = () => {
 
   const { user } = useContext(AuthContext);
-
-  // const assetsTotal = ListReportInventory();
-
-  // assetsTotal.forEach((assets) => {
-  //   assets.forEach((asset) => {
-  //     console.log(asset.id);
-  //   });
-  // });
-  //
 
   return (
     <>

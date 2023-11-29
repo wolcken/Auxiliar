@@ -6,7 +6,7 @@ function ListAssets(categoria) {
     assets.map((asset) => (
         listAsset.push({
             value: asset.id,
-            label: asset.Details
+            label: asset.Codigo
         })
     ));
     return {

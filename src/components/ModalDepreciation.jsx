@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form, Col, Row, InputGroup } from 'react-bootstrap';
+import { Depreciation } from '../tools/Depreciation';
 
-const ModalDepreciation = ({ show, handleClose }) => {
+const ModalDepreciation = ({ show, handleClose, assets }) => {
 
     const [validated, setValidated] = useState(false);
 
@@ -9,7 +10,7 @@ const ModalDepreciation = ({ show, handleClose }) => {
         Dia: '',
         Mes: '',
         Año: '',
-        UFV_final: ''
+        Ufv: ''
     })
 
     const handleChanges = (label, value) => {
@@ -24,10 +25,10 @@ const ModalDepreciation = ({ show, handleClose }) => {
         if (datesDepreciation.Dia !== ''
             && datesDepreciation.Mes !== ''
             && datesDepreciation.Año !== ''
-            && datesDepreciation.UFV_final !== '') {
-            console.log(datesDepreciation)
+            && datesDepreciation.Ufv !== '') {
+            Depreciation(datesDepreciation.Dia, datesDepreciation.Mes, datesDepreciation.Año, datesDepreciation.Ufv, assets);
+            handleExit();
         }
-
     };
 
     const handleClear = () => {
@@ -35,7 +36,7 @@ const ModalDepreciation = ({ show, handleClose }) => {
             Dia: '',
             Mes: '',
             Año: '',
-            UFV_final: ''
+            Ufv: ''
         });
         setValidated(false);
     }
@@ -114,8 +115,8 @@ const ModalDepreciation = ({ show, handleClose }) => {
                             type="number"
                             placeholder="UFV del dia"
                             required
-                            value={datesDepreciation.UFV_final}
-                            onChange={(event) => handleChanges('UFV_final', event.target.value)}
+                            value={datesDepreciation.Ufv}
+                            onChange={(event) => handleChanges('Ufv', event.target.value)}
                         />
                         <Form.Control.Feedback type="invalid">
                             Introduce el UFV para el Calculo.
@@ -125,7 +126,7 @@ const ModalDepreciation = ({ show, handleClose }) => {
             </Modal.Body>
             <Modal.Footer style={{ justifyContent: 'space-between' }}>
                 <Button variant="outline-secondary" onClick={handleClear}>
-                    Cancel
+                    Limpiar
                 </Button>
                 <Button variant="outline-primary" onClick={handleCalculate}>
                     Calcular y Guardar

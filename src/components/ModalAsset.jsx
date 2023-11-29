@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Modal, Image} from 'react-bootstrap';
+import { Button, Modal, Image } from 'react-bootstrap';
 import noImagen from '../assets/images/noImagen.png';
 import ProgressEstado from './ProgressEstado';
 import ModalAsignar from './ModalAsignar';
@@ -35,12 +35,20 @@ const ModalAsset = ({ show, handleClose, asset, categoria }) => {
                     <span className='text'>{asset?.Fecha_Inicial}</span>
                 </div>
                 <div className='cont-text'>
+                    <h6 className='subtitle'>UFV de Adquisicion:</h6>
+                    <span className='text'>{asset?.UFV_Inicial}</span>
+                </div>
+                <div className='cont-text'>
                     <h6 className='subtitle'>Valor de Adquisicion:</h6>
                     <span className='text'>{asset?.Valor_Inicial} Bs.</span>
                 </div>
                 <div className='cont-text'>
+                    <h6 className='subtitle'>Fecha Depreciado:</h6>
+                    <span className='text'>{asset?.Valor_Final || 'Sin Depreciar'}</span>
+                </div>
+                <div className='cont-text'>
                     <h6 className='subtitle'>Valor Depreciado:</h6>
-                    <span className='text'>{asset?.Valor_Depreciado} Bs.</span>
+                    <span className='text'>{asset?.Valor_Depreciado === asset?.Valor_Inicial ? 'Sin Depreciar' : asset?.Valor_Depreciado} Bs.</span>
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>Asignado:</h6>

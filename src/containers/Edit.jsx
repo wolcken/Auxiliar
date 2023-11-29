@@ -73,7 +73,7 @@ const Edit = ({ show, handleClose, categoria }) => {
             if (docSnap.exists()) {
                 setAsset({ ...docSnap.data() });
             } else {
-                alert('No existe el usuario');
+                alert('No existe el Activo');
             }
         } catch (error) {
             alert(error);
