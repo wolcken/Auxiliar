@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Button, Col, Form, Image, Row } from 'react-bootstrap';
-import logo from '../assets/images/Cecasem30.png';
 import { AuthContext } from '../context/AuthProvider';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Credenciales';
+import logo from '../assets/images/Cecasem30.png';
 import usuario from '../assets/icons/usuario.svg';
 import ojo from '../assets/icons/ojo.svg';
 import ojo_cruzado from '../assets/icons/ojo-cruzado.svg';
 import '../styles/Login.css';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Credenciales';
 
 const Login = ({ onLogIn }) => {
 

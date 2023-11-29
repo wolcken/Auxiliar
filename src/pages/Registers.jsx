@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 import GroupCrud from '../components/GroupCrud';
 import SelectCategoria from '../components/SelectCategoria';
-import { v4 as uuidv4 } from 'uuid';
 import ImageSearch from '../components/ImageSearch';
 import Loading from '../assets/images/loading-load.gif';
 

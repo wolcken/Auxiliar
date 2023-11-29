@@ -29,20 +29,26 @@ const useCategories = () => {
 
 // Create Assets
 const createAssets = async (asset, categoria) => {
-    const assetRef = collection(db, `Activos/Externo/${categoria}`);
+    const assetRef = collection(db, `Activos/Externo/${categoria.value}`);
     try {
         await setDoc(doc(assetRef), {
             SubCategory: String(asset.SubCategory),
             Codigo: Number(asset.Codigo),
             Details: String(asset.Details),
             Image: String(asset.Image),
-            Valor_Inicial: Number(asset.Valor_Inicial),
-            Valor_Depreciado: Number(asset.Valor_Inicial),
+            Fecha_Inicial: String(`${asset.Mes}/${asset.Dia}/${asset.Año}`),
+            UFV_Inicial: Number(asset.Ufv),
+            Valor_Inicial: Number(asset.Valor),
+            Fecha_Final: String(''),
+            UFV_Final: Number(''),
+            Valor_Depreciado: Number(asset.Valor),
             Estado: Number(asset.Estado),
-            Activo: Boolean(asset.Activo),
-            Asignado: String(asset.Asignado)
+            Activo: Boolean(true),
+            Asignado: String(''),
+            Life: Number(categoria.life),
+            Coefficient: Number(categoria.coefficient)
         });
-        alert(`${categoria} creada con exito`);
+        alert(`${categoria.value} creada con exito`);
     } catch (error) {
         console.log(error);
     }

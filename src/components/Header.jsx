@@ -1,12 +1,13 @@
 import { useContext } from 'react';
-import { Nav, Navbar, Offcanvas, Container } from 'react-bootstrap';
+import { Nav, Navbar, Offcanvas, Container, Image } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { ListRoutes } from '../utils/ListRoutes';
+import { auth } from '../Credenciales';
 import { signOut } from 'firebase/auth';
+import logo from '../assets/images/cecasem.png';
 import dejar from '../assets/icons/dejar.svg';
 import '../styles/Header.css';
-import { auth } from '../Credenciales';
 
 function Header() {
 
@@ -24,7 +25,9 @@ function Header() {
     return (
         <Navbar bg="primary" data-bs-theme="dark" key='md' expand='md' className='mb-3'>
             <Container fluid>
-                <Navbar.Brand href="/">Cecasem</Navbar.Brand>
+                <NavLink to={'/'}>
+                    <Image src={logo} style={{ width: 120 }} />
+                </NavLink>
                 <Navbar.Toggle aria-controls={'offcanvasNavbar-expand-md'} />
                 <Navbar.Offcanvas
                     id={'offcanvasNavbar-expand-md'}

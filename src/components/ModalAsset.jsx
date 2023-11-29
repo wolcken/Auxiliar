@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Image from 'react-bootstrap/Image';
+import {Button, Modal, Image} from 'react-bootstrap';
 import noImagen from '../assets/images/noImagen.png';
-import '../styles/Modal.css';
 import ProgressEstado from './ProgressEstado';
 import ModalAsignar from './ModalAsignar';
+import '../styles/Modal.css';
 
 const ModalAsset = ({ show, handleClose, asset, categoria }) => {
 
@@ -34,7 +32,7 @@ const ModalAsset = ({ show, handleClose, asset, categoria }) => {
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>Fecha de Adquisicion:</h6>
-                    <span className='text'>22/10/2023</span>
+                    <span className='text'>{asset?.Fecha_Inicial}</span>
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>Valor de Adquisicion:</h6>

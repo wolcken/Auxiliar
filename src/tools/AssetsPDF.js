@@ -10,7 +10,7 @@ export function AssetsPDF(assets, categoria) {
     doc.text(`${categoria}`, 75, 35);
 
     //Tabla de Productos
-    const columns = ['#', 'Codigo', 'Detalles', 'Valor', 'Estado'];
+    const columns = ['#', 'Codigo', 'Detalles', 'Valor Neto', 'Estado'];
     const data = assets
 
     doc.autoTable({

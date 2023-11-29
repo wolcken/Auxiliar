@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, Button } from 'react-bootstrap';
 import noImagen from '../assets/images/noImagen.png';
 import ModalAsset from './ModalAsset';
 

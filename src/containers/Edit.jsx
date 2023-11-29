@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { Button, Modal, Col, Form, Row } from 'react-bootstrap';
 import Select from 'react-select';
 import ListAssets from '../utils/ListAssets';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import apiObject from '../api/DBfirestore';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { app } from '../Credenciales';

@@ -12,10 +12,15 @@ import '../styles/Reports.css';
 import iconPDF from '../assets/icons/archivo-pdf.svg';
 import apiObject from '../api/DBfirestore';
 import { AssetsPDF } from '../tools/AssetsPDF';
+import ModalDepreciation from '../components/ModalDepreciation';
 
 const Reports = () => {
 
   const [show, setShow] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
 
   const reportInventory = ListReportInventory();
   const assetState = [];
@@ -81,7 +86,7 @@ const Reports = () => {
   return (
     <>
       <h2>Generador de Reportes</h2>
-      <h3>Activos</h3>
+      <h3 className='subtitle_report'>Activos</h3>
       {!show ?
         <div style={{ marginTop: 50 }}>
           <Spinner animation="border" variant="primary" />
@@ -130,6 +135,20 @@ const Reports = () => {
           </Button>
         </div>
       }
+
+      <h3 className='subtitle_report'>Depreciacion</h3>
+      <div>
+        <Button
+          variant="danger"
+          className='btn_report'
+          onClick={handleOpen}
+        >
+          <img src={iconPDF} alt="iconPDF_Muebles" className='icon_btn_report' />
+          <h5 className='text_btn_report'>Depreciar</h5>
+        </Button>
+      </div>
+      <ModalDepreciation show={open} handleClose={handleClose} />
+
       <img src={Loading} alt="loading" />
     </>
   )
