@@ -18,7 +18,7 @@ const Assets = () => {
                             <Card style={{ width: '18rem', padding: 5, margin: 5 }} bg={'light'} key={inventory.id}>
                                 <Card.Img variant="top" src={(inventory?.Image !== 'https://imagen') ? inventory?.Image : noImagen} style={{ width: '17rem', height: 200 }} />
                                 <Card.Body>
-                                    <Card.Title>{inventory?.Categoria}</Card.Title>
+                                    <Card.Title>{inventory?.Category}</Card.Title>
                                     <Card.Title>{inventory?.SubCategory}</Card.Title>
                                     <Card.Text>
                                         Codigo: {inventory?.Codigo}

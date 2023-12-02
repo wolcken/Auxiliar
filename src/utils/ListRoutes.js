@@ -3,6 +3,7 @@ import busqueda from '../assets/icons/busqueda.svg';
 import monedas from '../assets/icons/monedas.svg';
 import votacion from '../assets/icons/votacion.svg';
 import aplicaciones from '../assets/icons/aplicaciones.svg';
+import caja from '../assets/icons/caja-abierta.svg';
 
 export const ListRoutes = [
     {
@@ -54,5 +55,15 @@ export const ListRoutes = [
         to: '/search',
         clasNav: 'nav_a',
         text: 'Buscar',
+    },
+    {
+        id: 6,
+        clasLi: 'cont_menu',
+        im: caja,
+        alt: 'retired',
+        clasImg: 'icon',
+        to: '/retired',
+        clasNav: 'nav_a',
+        text: 'Retirado',
     }
 ]

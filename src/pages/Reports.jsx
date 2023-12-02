@@ -29,7 +29,7 @@ const Reports = () => {
 
   reportInventory.forEach((inventories) => {
     inventories.forEach((inventory) => {
-      assetState.push([inventory?.Categoria, inventory?.SubCategory, inventory?.Codigo, inventory?.Details, inventory?.Estado]);
+      assetState.push([inventory?.Category, inventory?.SubCategory, inventory?.Codigo, inventory?.Details, inventory?.Estado]);
     })
   });
 

@@ -11,6 +11,7 @@ import Inventory from '../pages/Inventory';
 import Assets from '../pages/Assets';
 import { AuthProvider } from '../context/AuthProvider';
 import { AuthRoute } from '../auth/Autentication';
+import Retired from '../pages/Retired';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path='/registers' element={<AuthRoute><Registers /></AuthRoute>} />
               <Route path='/search' element={<AuthRoute><Search /></AuthRoute>} />
               <Route path='/inventory' element={<AuthRoute><Inventory /></AuthRoute>} />
+              <Route path='/retired' element={<AuthRoute><Retired /></AuthRoute>} />
               <Route path='*' element={<NotFount />} />
             </Routes>
           </Layout>

@@ -9,13 +9,13 @@ const ListReportInventory = () => {
 
     categories.forEach((category) => {
         if (category.value === 'Muebles') {
-            reportInventory.push(apiObject.useAssets(category.value, category.label))
+            reportInventory.push(apiObject.useAssets(category.value))
         }
         if (category.value === 'Equipos') {
-            reportInventory.push(apiObject.useAssets(category.value, category.label))
+            reportInventory.push(apiObject.useAssets(category.value))
         }
         if (category.value === 'Vehiculos') {
-            reportInventory.push(apiObject.useAssets(category.value, category.label))
+            reportInventory.push(apiObject.useAssets(category.value))
         }
     });
 

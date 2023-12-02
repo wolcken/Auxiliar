@@ -56,7 +56,7 @@ const createAssets = async (asset, categoria) => {
     }
 }
 // Read Assets
-const useAssets = (categoria, label) => {
+const useAssets = (categoria) => {
     const [asset, setAsset] = useState([]);
     const getAsset = async () => {
         try {
@@ -64,7 +64,7 @@ const useAssets = (categoria, label) => {
             onSnapshot(q, (querySnapshot) => {
                 const docs = [];
                 querySnapshot.forEach((doc) => {
-                    docs.push({ ...doc.data(), id: doc.id, Categoria: label })
+                    docs.push({ ...doc.data(), id: doc.id })
                 })
                 setAsset(docs)
             })
@@ -157,6 +157,60 @@ const updateDepreciation = async (categoria, id, fecha, ufv, valor) => {
     }
 }
 
+// Retirar Assets
+const retirarAsset = async (asset, observacion) => {
+    const assetRef = collection(db, `Activos/Interno/${asset.Tipo}`);
+    try {
+        await setDoc(doc(assetRef, asset.id), {
+            Tipo: String(asset.Tipo),
+            Category: String(asset.Category),
+            SubCategory: String(asset.SubCategory),
+            Codigo: Number(asset.Codigo),
+            Details: String(asset.Details),
+            Image: String(asset.Image),
+            Fecha_Inicial: String(asset.Fecha_Inicial),
+            UFV_Inicial: Number(asset.UFV_Inicial),
+            Valor_Inicial: Number(asset.Valor_Inicial),
+            Fecha_Final: String(asset.Fecha_Final),
+            UFV_Final: Number(asset.UFV_Final),
+            Valor_Depreciado: Number(asset.Valor_Depreciado),
+            Estado: Number(asset.Estado),
+            Activo: Boolean(asset.Activo),
+            Asignado: String(asset.Asignado),
+            Life: Number(asset.life),
+            Coefficient: Number(asset.coefficient),
+            Observaciones: String(observacion)
+        });
+        alert(`${asset.Category} retirado con exito`);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Read Retireds
+const useRetireds = (categoria) => {
+    const [asset, setAsset] = useState([]);
+    const getAsset = async () => {
+        try {
+            const q = collection(db, `Activos/Interno/${categoria}`)
+            onSnapshot(q, (querySnapshot) => {
+                const docs = [];
+                querySnapshot.forEach((doc) => {
+                    docs.push({ ...doc.data(), id: doc.id })
+                })
+                setAsset(docs)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getAsset();
+        // eslint-disable-next-line
+    }, []);
+    return asset
+}
+
 const apiObject = {
     useCategories,
     createAssets,
@@ -165,7 +219,9 @@ const apiObject = {
     deleteAsset,
     useInventary,
     updateAsignacion,
-    updateDepreciation
+    updateDepreciation,
+    retirarAsset,
+    useRetireds
 }
 
 export default apiObject;

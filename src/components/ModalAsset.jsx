@@ -4,13 +4,17 @@ import noImagen from '../assets/images/noImagen.png';
 import ProgressEstado from './ProgressEstado';
 import ModalAsignar from './ModalAsignar';
 import '../styles/Modal.css';
+import ModalRetirar from './ModalRetirar';
 
 const ModalAsset = ({ show, handleClose, asset, categoria }) => {
 
     const [showAsignar, setShowAsignar] = useState(false);
+    const [showRetirar, setShowRetirar] = useState(false);
 
     const handleCloseAsignar = () => setShowAsignar(false);
     const handleShowAsignar = () => setShowAsignar(true);
+    const handleCloseRetirar = () => setShowRetirar(false);
+    const handleShowRetirar = () => setShowRetirar(true);
 
     return (
         <Modal show={show} onHide={handleClose} centered animation >
@@ -62,13 +66,14 @@ const ModalAsset = ({ show, handleClose, asset, categoria }) => {
                 </div>
             </Modal.Body>
             <Modal.Footer style={{ justifyContent: 'space-between' }}>
-                <Button variant="outline-warning" onClick={handleClose}>
+                <Button variant="outline-warning" onClick={handleShowRetirar}>
                     Retirar
                 </Button>
                 <Button variant="outline-success" onClick={handleShowAsignar}>
                     Asignar
                 </Button>
             </Modal.Footer>
+            <ModalRetirar show={showRetirar} handleClose={handleCloseRetirar} asset={asset} />
             <ModalAsignar show={showAsignar} handleClose={handleCloseAsignar} asset={asset} categoria={categoria} />
         </Modal>
     )
