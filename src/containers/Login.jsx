@@ -51,7 +51,7 @@ const Login = ({ onLogIn }) => {
         <>
             <Form className='form_login' noValidate validated={validated}>
 
-                <h2 className='title_login'>Iniciar Sesion</h2>
+                <h2 className='title_login'>Activos Fijos</h2>
 
                 <img src={logo} alt="logo" className='logo_login' />
 
@@ -104,7 +104,7 @@ const Login = ({ onLogIn }) => {
                     </Col>
                 </Form.Group>
 
-                <Button variant="primary" onClick={handleLogin}>Iniciar</Button>
+                <Button variant="outline-primary" style={{ width: '70%' }} onClick={handleLogin}>Iniciar</Button>
             </Form>
         </>
     )

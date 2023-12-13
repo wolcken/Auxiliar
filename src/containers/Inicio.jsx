@@ -8,7 +8,7 @@ const Inicio = () => {
 
   return (
     <>
-      <h2>Inicio</h2>
+      <h2>Activos Fijos</h2>
       <p>{user?.email}</p>
       <img src={logo} alt="logo" style={{
         width: '80%',
