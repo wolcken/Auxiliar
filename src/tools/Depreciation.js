@@ -11,7 +11,7 @@ export function Depreciation(dia, mes, año, ufv, assets) {
     AssetsTotal.forEach((assets) => {
         assets.forEach((asset) => {
 
-            let fecha_inicial = new Date(asset.Fecha_Inicial);
+            let fecha_inicial = new Date(`${asset.Mes_I}/${asset.Dia_I}/${asset.Año_I}`);
             let ufv_inicial = asset.UFV_Inicial;
             let valor_inicial = asset.Valor_Inicial;
             let porcentaje_depreciacion = asset.Coefficient;

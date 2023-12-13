@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Col, Form, Row } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, InputGroup } from 'react-bootstrap';
 import Select from 'react-select';
 import ListAssets from '../utils/ListAssets';
 import apiObject from '../api/DBfirestore';
@@ -17,12 +17,15 @@ const Edit = ({ show, handleClose, categoria }) => {
     const [validated, setValidated] = useState(false);
 
     const [asset, setAsset] = useState({
-        SubCategory: '',
+        Codigo: '',
         Details: '',
+        Image: '',
+        Dia_I: '',
+        Mes_I: '',
+        Año_I: '',
+        UFV_Inicial: '',
         Valor_Inicial: '',
-        Valor_Depreciado: '',
-        Estado: '',
-        Activo: ''
+        Estado: ''
     });
 
     const handleId = (value) => {
@@ -38,11 +41,15 @@ const Edit = ({ show, handleClose, categoria }) => {
         event.preventDefault();
         setValidated(true);
         if (id !== ''
+            && asset.Codigo !== ''
             && asset.Details !== ''
+            && asset.Image !== ''
+            && asset.Dia_I !== ''
+            && asset.Mes_I !== ''
+            && asset.Año_I !== ''
+            && asset.UFV_Inicial !== ''
             && asset.Valor_Inicial !== ''
-            && asset.Valor_Depreciado !== ''
-            && asset.Estado !== ''
-            && asset.Activo !== '') {
+            && asset.Estado !== '') {
             apiObject.updateAsset(id, asset, categoria.value);
             handleExit();
         }
@@ -51,12 +58,15 @@ const Edit = ({ show, handleClose, categoria }) => {
     const handleClear = () => {
         setId('');
         setAsset({
-            SubCategory: '',
+            Codigo: '',
             Details: '',
+            Image: '',
+            Dia_I: '',
+            Mes_I: '',
+            Año_I: '',
+            UFV_Inicial: '',
             Valor_Inicial: '',
-            Valor_Depreciado: '',
-            Estado: '',
-            Activo: ''
+            Estado: ''
         });
         setValidated(false);
     }
@@ -88,89 +98,156 @@ const Edit = ({ show, handleClose, categoria }) => {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit {categoria.label}</Modal.Title>
+                    <Modal.Title>Editar {categoria.label}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
                     <Select
-                        placeholder='Selected Item'
+                        placeholder='Seleccione Codigo'
                         options={options}
                         onChange={(e) => handleId(e.value)}
                     />
 
                     <Form noValidate validated={validated}>
-                        <Form.Group controlId="validationCustom01" className='mb-3 mt-3'>
-                            <Form.Label>Details</Form.Label>
+                        <Form.Group controlId="validationCodigo" className='mb-3'>
+                            <Form.Label>Codigo:</Form.Label>
+                            <Form.Control
+                                type='number'
+                                placeholder='Codigo'
+                                required
+                                min={1000}
+                                value={asset.Codigo}
+                                onChange={(event) => handleChange('Codigo', event.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Porfavor introduce un Codigo valido.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group controlId="validationDetails" className='mb-3'>
+                            <Form.Label>Detalles:</Form.Label>
                             <Form.Control
                                 required
                                 as="textarea"
                                 rows={3}
                                 type='text'
-                                placeholder='Details'
+                                placeholder='Detalles'
                                 value={asset.Details}
                                 onChange={(event) => handleChange('Details', event.target.value)}
                             />
                             <Form.Control.Feedback type="invalid">
-                                Please provide a valid Details.
+                                Porfavor introduce un Detalle valido.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group controlId="validationImage" className='mb-3'>
+                            <Form.Label>Url Imagen:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Url Imagen"
+                                required
+                                value={asset.Image}
+                                onChange={(event) => handleChange('Image', event.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Porfavor introduce una Url de Imagen.
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-                                <Form.Label>Starting Price</Form.Label>
+                            <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                <Form.Label>Dia</Form.Label>
+                                <InputGroup hasValidation>
+                                    <InputGroup.Text id="inputGroupPrepend1">Dia</InputGroup.Text>
+                                    <Form.Control
+                                        type="number"
+                                        min={1}
+                                        placeholder="Dia"
+                                        aria-describedby="inputGroupPrepend1"
+                                        required
+                                        value={asset.Dia_I}
+                                        onChange={(event) => handleChange('Dia_I', event.target.value)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Introduce un Dia.
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+                            </Form.Group>
+                            <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                <Form.Label>Mes</Form.Label>
+                                <InputGroup hasValidation>
+                                    <InputGroup.Text id="inputGroupPrepend2">Mes</InputGroup.Text>
+                                    <Form.Control
+                                        type="number"
+                                        min={1}
+                                        placeholder="Mes"
+                                        aria-describedby="inputGroupPrepend2"
+                                        required
+                                        value={asset.Mes_I}
+                                        onChange={(event) => handleChange('Mes_I', event.target.value)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Introduce un Mes.
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+                            </Form.Group>
+                            <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                <Form.Label>Año</Form.Label>
+                                <InputGroup hasValidation>
+                                    <InputGroup.Text id="inputGroupPrepend3">Año</InputGroup.Text>
+                                    <Form.Control
+                                        type="number"
+                                        min={1900}
+                                        placeholder="Año"
+                                        aria-describedby="inputGroupPrepend3"
+                                        required
+                                        value={asset.Año_I}
+                                        onChange={(event) => handleChange('Año_I', event.target.value)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Introduce un Año.
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+                            </Form.Group>
+                        </Row>
+                        <Form.Group controlId="validationImage" className='mb-3'>
+                            <Form.Label>UFV Inicial:</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="UFV Inicial"
+                                required
+                                value={asset.UFV_Inicial}
+                                onChange={(event) => handleChange('UFV_Inicial', event.target.value)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Porfavor introduce la UFV valida.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Row className="mb-3">
+                            <Form.Group as={Col} md="6" controlId="validationStartingPrice">
+                                <Form.Label>Valor Inicial:</Form.Label>
                                 <Form.Control
                                     type="number"
                                     min={0}
-                                    placeholder="Starting Price"
+                                    placeholder="Valor Inicial"
                                     required
                                     value={asset.Valor_Inicial}
                                     onChange={(event) => handleChange('Valor_Inicial', event.target.value)}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Please provide a valid Price.
+                                    Porfavor introduce un Valor Inicial.
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                <Form.Label>Depreciated Price</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    min={0}
-                                    placeholder="Depreciated Price"
-                                    required
-                                    value={asset.Valor_Depreciado}
-                                    onChange={(event) => handleChange('Valor_Depreciado', event.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid Price.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                                <Form.Label>State</Form.Label>
+                            <Form.Group as={Col} md="6" controlId="validationState">
+                                <Form.Label>Estado</Form.Label>
                                 <Form.Control
                                     required
                                     type="number"
                                     min={0}
                                     max={10}
-                                    placeholder="State"
+                                    placeholder="Estado"
                                     value={asset.Estado}
                                     onChange={(event) => handleChange('Estado', event.target.value)}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Please provide a valid State.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="validationCustom04">
-                                <Form.Label>Asset</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Asset"
-                                    value={asset.Activo}
-                                    onChange={(event) => handleChange('Activo', event.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid Asset.
+                                    Porfavor introduce el Estado.
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Row>

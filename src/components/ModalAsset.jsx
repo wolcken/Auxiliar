@@ -36,7 +36,7 @@ const ModalAsset = ({ show, handleClose, asset, categoria }) => {
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>Fecha de Adquisicion:</h6>
-                    <span className='text'>{asset?.Fecha_Inicial}</span>
+                    <span className='text'>{asset?.Mes_I}/{asset?.Dia_I}/{asset?.Año_I}</span>
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>UFV de Adquisicion:</h6>
@@ -48,7 +48,7 @@ const ModalAsset = ({ show, handleClose, asset, categoria }) => {
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>Fecha Depreciado:</h6>
-                    <span className='text'>{asset?.Valor_Final || 'Sin Depreciar'}</span>
+                    <span className='text'>{asset?.Fecha_Final || 'Sin Depreciar'}</span>
                 </div>
                 <div className='cont-text'>
                     <h6 className='subtitle'>Valor Depreciado:</h6>

@@ -23,4 +23,5 @@
 .icon_eye:hover {
     background-color: rgba(128, 128, 128, 0.116);
     border-radius: 100%;
+    cursor: pointer;
 }

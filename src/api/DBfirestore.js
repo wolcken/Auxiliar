@@ -38,7 +38,9 @@ const createAssets = async (asset, categoria) => {
             Codigo: Number(asset.Codigo),
             Details: String(asset.Details),
             Image: String(asset.Image),
-            Fecha_Inicial: String(`${asset.Mes}/${asset.Dia}/${asset.Año}`),
+            Dia_I: Number(asset.Dia),
+            Mes_I: Number(asset.Mes),
+            Año_I: Number(asset.Año),
             UFV_Inicial: Number(asset.Ufv),
             Valor_Inicial: Number(asset.Valor),
             Fecha_Final: String(''),
@@ -83,15 +85,16 @@ const updateAsset = async (id, asset, categoria) => {
     const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
     try {
         await updateDoc(assetRef, {
-            SubCategory: String(asset.SubCategory),
             Codigo: Number(asset.Codigo),
             Details: String(asset.Details),
             Image: String(asset.Image),
+            Dia_I: Number(asset.Dia_I),
+            Mes_I: Number(asset.Mes_I),
+            Año_I: Number(asset.Año_I),
+            UFV_Inicial: Number(asset.UFV_Inicial),
             Valor_Inicial: Number(asset.Valor_Inicial),
-            Valor_Depreciado: Number(asset.Valor_Depreciado),
+            Valor_Depreciado: Number(asset.Valor_Inicial),
             Estado: Number(asset.Estado),
-            Activo: Boolean(asset.Activo),
-            Asignado: String(asset.Asignado)
         })
         alert('Modificado con exito')
     } catch (error) {

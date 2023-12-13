@@ -51,17 +51,20 @@ const Reports = () => {
 
   Muebles.forEach((mueble, index) => {
     assetMuebles.push([index, mueble.Codigo, mueble.Details, mueble.Valor_Depreciado, mueble.Estado]);
-    depreciationMuebles.push([index, mueble.Codigo, mueble.SubCategory, mueble.Fecha_Inicial, mueble.UFV_Inicial, mueble.Valor_Inicial, mueble.Fecha_Final, mueble.UFV_Final, mueble.Valor_Depreciado]);
+    let Fecha_Inicial = `${mueble.Mes_I}/${mueble.Dia_I}/${mueble.Año_I}`;
+    depreciationMuebles.push([index, mueble.Codigo, mueble.SubCategory, Fecha_Inicial, mueble.UFV_Inicial, mueble.Valor_Inicial, mueble.Fecha_Final, mueble.UFV_Final, mueble.Valor_Depreciado]);
   });
 
   Equipos.forEach((equipo, index) => {
     assetEquipos.push([index, equipo.Codigo, equipo.Details, equipo.Valor_Depreciado, equipo.Estado]);
-    depreciationEquipos.push([index, equipo.Codigo, equipo.SubCategory, equipo.Fecha_Inicial, equipo.UFV_Inicial, equipo.Valor_Inicial, equipo.Fecha_Final, equipo.UFV_Final, equipo.Valor_Depreciado]);
+    let Fecha_Inicial = `${equipo.Mes_I}/${equipo.Dia_I}/${equipo.Año_I}`;
+    depreciationEquipos.push([index, equipo.Codigo, equipo.SubCategory, Fecha_Inicial, equipo.UFV_Inicial, equipo.Valor_Inicial, equipo.Fecha_Final, equipo.UFV_Final, equipo.Valor_Depreciado]);
   });
 
   Vehiculos.forEach((vehiculo, index) => {
     assetVehiculos.push([index, vehiculo.Codigo, vehiculo.Details, vehiculo.Valor_Depreciado, vehiculo.Estado]);
-    depreciationVehiculos.push([index, vehiculo.Codigo, vehiculo.SubCategory, vehiculo.Fecha_Inicial, vehiculo.UFV_Inicial, vehiculo.Valor_Inicial, vehiculo.Fecha_Final, vehiculo.UFV_Final, vehiculo.Valor_Depreciado]);
+    let Fecha_Inicial = `${vehiculo.Mes_I}/${vehiculo.Dia_I}/${vehiculo.Año_I}`;
+    depreciationVehiculos.push([index, vehiculo.Codigo, vehiculo.SubCategory, Fecha_Inicial, vehiculo.UFV_Inicial, vehiculo.Valor_Inicial, vehiculo.Fecha_Final, vehiculo.UFV_Final, vehiculo.Valor_Depreciado]);
   });
 
   const handleStatePDF = () => {
@@ -85,11 +88,11 @@ const Reports = () => {
   }
 
   const handleMueblesDepreciacionPDF = () => {
-    DepreciationPDF(depreciationMuebles, 'Equipos de Computacion');
+    DepreciationPDF(depreciationMuebles, 'Muebles y Enseres de Oficina');
   }
 
   const handleEquiposDepreciacionPDF = () => {
-    DepreciationPDF(depreciationEquipos, 'Muebles y Enseres de Oficina');
+    DepreciationPDF(depreciationEquipos, 'Equipos de Computacion');
   }
 
   const handleVehiculosDepreciacionPDF = () => {
