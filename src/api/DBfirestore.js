@@ -57,6 +57,7 @@ const createAssets = async (asset, categoria) => {
         console.log(error);
     }
 }
+
 // Read Assets
 const useAssets = (categoria) => {
     const [asset, setAsset] = useState([]);
@@ -80,7 +81,8 @@ const useAssets = (categoria) => {
     }, []);
     return asset
 }
-//Update Asset
+
+// Update Asset
 const updateAsset = async (id, asset, categoria) => {
     const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
     try {
@@ -101,7 +103,8 @@ const updateAsset = async (id, asset, categoria) => {
         console.log(error)
     }
 }
-//Delete Asset
+
+// Delete Asset
 const deleteAsset = async (categoria, id) => {
     try {
         await deleteDoc(doc(db, `Activos/Externo/${categoria}`, id))
@@ -111,6 +114,7 @@ const deleteAsset = async (categoria, id) => {
     }
 }
 
+// List Inventary
 const useInventary = (categoria, subCategoria, categoriaLabel) => {
     const [article, setArticle] = useState(null)
     const getInventary = async () => {
@@ -129,7 +133,7 @@ const useInventary = (categoria, subCategoria, categoriaLabel) => {
     return article
 }
 
-//Update Asignacion
+// Update Asignacion
 const updateAsignacion = async (categoria, id, asignado) => {
 
     const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
@@ -144,7 +148,7 @@ const updateAsignacion = async (categoria, id, asignado) => {
     }
 }
 
-//Update Depreciation and UFV
+// Update Depreciation and UFV
 const updateDepreciation = async (categoria, id, fecha, ufv, valor) => {
 
     const assetRef = doc(db, `Activos/Externo/${categoria}`, id);
@@ -214,6 +218,16 @@ const useRetireds = (categoria) => {
     return asset
 }
 
+// Delete Retired
+const deleteRetired = async (categoria, id) => {
+    try {
+        await deleteDoc(doc(db, `Activos/Interno/${categoria}`, id))
+        alert('Eliminado con exito')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const apiObject = {
     useCategories,
     createAssets,
@@ -224,7 +238,8 @@ const apiObject = {
     updateAsignacion,
     updateDepreciation,
     retirarAsset,
-    useRetireds
+    useRetireds,
+    deleteRetired
 }
 
 export default apiObject;

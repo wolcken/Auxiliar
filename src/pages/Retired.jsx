@@ -3,15 +3,22 @@ import { Container, Row, Card } from 'react-bootstrap';
 import ListRetireds from '../utils/ListRetireds';
 import noImagen from '../assets/images/noImagen.png';
 import ProgressEstado from '../components/ProgressEstado';
+import basura from '../assets/icons/basura.svg';
+import '../styles/Retired.css';
+import apiObject from '../api/DBfirestore';
 
 const Retired = () => {
 
     const assetsRetireds = ListRetireds();
 
-  return (
-    <>
-        <h2>Retirados</h2>
-        <Container fluid>
+    const handleDelete = (categoria, id) => {
+        apiObject.deleteRetired(categoria, id);
+    }
+
+    return (
+        <>
+            <h2>Retirados</h2>
+            <Container fluid>
                 <Row className="justify-content-md-center">
                     {assetsRetireds?.map((assets) => (
                         assets.map((asset) => (
@@ -31,13 +38,16 @@ const Retired = () => {
                                     </Card.Text>
                                     <ProgressEstado state={asset.Estado} />
                                 </Card.Body>
+                                <Card.Body>
+                                    <img src={basura} alt="basura" className='basura' onClick={() => handleDelete(asset.Tipo, asset.id)} />
+                                </Card.Body>
                             </Card>
                         ))
                     ))}
                 </Row>
             </Container>
-    </>
-  )
+        </>
+    )
 }
 
 export default Retired

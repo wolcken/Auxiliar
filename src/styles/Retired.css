@@ -1,0 +1,10 @@
+.basura {
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.basura:hover {
+    cursor: pointer;
+}
